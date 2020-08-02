@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Productividad Back Office Entel - Easy</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <!--FavIcon-->
+    <%= favicon_link_tag 'ar_logo.jpg' %>
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--Java Script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>  
+    
+    <!-- Fonts Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+
+    <!-- Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark" style="background-color: #10069f;">
+        <div class="container">          
+          <%= link_to image_tag("logo-entel.svg", size: "50", class: "navbar-brand", alt: "Logo Entel" ), root_path %>
+          <h5 class="text-white font-weight-bold" style="font-family: 'Barlow', sans-serif; font-size: 17px; font-weight: 100;"> PRODUCTIVIDAD BACK OFFICE ENTEL - EASY </h5>
+          <%= image_tag("logo_easy.png", size: "50", class: "navbar-brand", alt: "Logo DEV" ) %>
+        </div>
+    </nav>
+    <main class="mb-5">
+      <%= yield%>
+    </main>
+    <footer class="fixed-bottom mt-5" style="background-color: #10069f;">
+      <div class="container p-2">
+        <h5 class="text-white font-weight-bold mt-2 text-center" style="font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 100;"> COPYRIGHT © PRISMA LABS </h5>
+      </div>
+    </footer>
+  </body>
+</html>

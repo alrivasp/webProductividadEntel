@@ -1,0 +1,176 @@
+
+<div class="container mb-5">
+    <div style="background-color: #ff3d00;" class="jumbotron-fluid p-4 shadow mb-4">
+        <div class="container text-white" style="font-family: 'Barlow', sans-serif;">
+            <h1 class="display-4"><i class="fas fa-chart-line"></i>&nbsp;Calculo de Productividad...</h1>
+            <p class="lead">Ingresa la cantidad de casos cerrados los cuales se calcularan con tus Horas trabajadas.</p>
+        </div>
+    </div>
+
+    <div class="container my-5 pb-0 mb-0 ">
+        <div class="accordion shadow rounded " id="accordionExample">
+       
+            <% if @dia == 0 && @mes == 0 %>
+                <% @clase1 = "collapse" %>
+                <% @clase2 = "collapse" %>
+                <% @clase3 = "collapse" %>
+            <% else%>
+                <% if @dia == 1 %>
+                    <% @clase1 = "collapse show" %>
+                    <% @clase2 = "collapse" %>
+                    <% @clase3 = "collapse" %>
+                <% elsif @mes == 1%>
+                    <% @clase1 = "collapse" %>
+                    <% @clase2 = "collapse show" %>
+                    <% @clase3 = "collapse" %>
+                <% end %>
+            <% end %>
+            <div class="card">
+                <div class="card-header text-center" id="headingOne" style="background-color: #fd6c98;">
+                <h2 class="mb-0">
+                    <button class="text-decoration-none btn btn-block text-center text-white font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <i class="fas fa-calendar-day"></i>&nbsp;Calculo de Productividad Diario
+                    </button>
+                </h2>
+                </div>
+                <div id="collapseOne" class="<%= @clase1 %>" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col-12 text-primary">
+                                <h3 style="font-family: 'Barlow', sans-serif;">Dia Trabajado</h3>
+                                <form method="get" action="">
+                                    <div class="form-group">
+                                        <input type="number" class="" id="casosCerrados" aria-describedby="casosCerradosHelp" name="numeroCasos" placeholder="N° de Casos cerrados" min="1" max="2000">
+                                        <button type="submit" class="btn btn-primary">Calcular</button>
+                                        <small id="casosCerradosHelp" class="form-text text-muted">Ingrese cantidad de Casos Cerrados hasta el momento en el dia</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12">
+                                <% if @resultado == 0 %>
+                                                            
+                                <% elsif @resultado < 3.6%>
+                                    <h3 class="text-danger" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasos]%> casos cerrados es de: <i><%= number_with_precision(@resultado.to_f, precision: 1) %></i>&nbsp;&nbsp;<i class="fas fa-thumbs-down"></i></h3>
+                                <% elsif  @resultado > 3.6 && @resultado < 4.5 %>
+                                    <h3 class="text-primary" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasos]%> casos cerrados es de: <i><%= number_with_precision(@resultado.to_f, precision: 1) %></i>&nbsp;&nbsp;<i class="fas fa-thumbs-up"></i></h3>
+                                <% elsif @resultado >= 4.5  %>
+                                    <h3 class="text-info" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasos]%> casos cerrados es de: <i><%= number_with_precision(@resultado.to_f, precision: 1) %>&nbsp;&nbsp;<i class="fas fa-hand-holding-usd"></i></h3>
+                                <% end%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingTwo" style="background-color: #fd6c98;">
+                <h2 class="mb-0">
+                    <button class="text-decoration-none btn btn-block text-center text-white font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-calendar-alt"></i>&nbsp;Calculo de Productividad Mensual
+                    </button>
+                </h2>
+                </div>
+                <div id="collapseTwo" class="<%= @clase2 %>" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body text-center">
+                    <div class="row">
+                            <div class="col-12 text-primary">
+                                <h3 style="font-family: 'Barlow', sans-serif;">Mes Trabajado</h3>
+                                <form method="" action="">
+                                    <div class="form-group">
+                                        <input type="number" class="" id="casosCerradosMes" aria-describedby="numeroCasosMesHelp" name="numeroCasosMes" placeholder="N° de Casos cerrados" min="1" max="2000">
+                                        <button type="submit" class="btn btn-primary">Calcular</button>
+                                        <small id="casosCerradosHelp" class="form-text text-muted">Ingrese cantidad de Casos Cerrados hasta el momento en el Mes</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12">
+                                <% if@resultadoMes == 0 %>
+                                                            
+                                <% elsif @resultadoMes < 3.6%>
+                                    <h3 class="text-danger" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasosMes]%> casos cerrados es de: <i><%= number_with_precision(@resultadoMes.to_f, precision: 3) %></i>&nbsp;&nbsp;<i class="fas fa-thumbs-down"></i></h3>
+                                <% elsif  @resultadoMes > 3.6 && @resultadoMes < 4.5 %>
+                                    <h3 class="text-primary" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasosMes]%> casos cerrados es de: <i><%= number_with_precision(@resultadoMes.to_f, precision: 3) %></i>&nbsp;&nbsp;<i class="fas fa-thumbs-up"></i></h3>
+                                <% elsif @resultadoMes >= 4.5  %>
+                                    <h3 class="text-info" style="font-family: 'Barlow', sans-serif;"><i class="fas fa-chalkboard-teacher"></i>&nbsp;Su Productividad con <%= params[:numeroCasosMes]%> casos cerrados es de: <i><%= number_with_precision(@resultadoMes.to_f, precision: 3) %>&nbsp;&nbsp;<i class="fas fa-hand-holding-usd"></i></h3>
+                                <% end%>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="headingTree" style="background-color: #fd6c98;">
+                <h2 class="mb-0">
+                    <button class="text-decoration-none btn btn-block text-center text-white font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                    <i class="fas fa-pencil-alt"></i>&nbsp;Tabla de Productividad
+                    </button>
+                </h2>
+                </div>
+                <div id="collapseTree" class="<%= @clase3 %>" aria-labelledby="headingTree" data-parent="#accordionExample">
+                <div class="card-body text-center">
+                    <div class="row">
+                            <div class="col-12 text-primary">
+                               <table class="table">
+                                    <thead class="thead-primary bg-primary text-white">
+                                        <tr>                                            
+                                            <th scope="col"></th>
+                                            <th scope="col">Minimo</th>
+                                            <th scope="col">Maximo</th>
+                                            <th scope="col">% Variable</th>
+                                            <th scope="col">Monto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-success">
+                                            <td><i class="fas fa-trophy fa-lg"></i></td>
+                                            <td>4.5</td>
+                                            <td>>5.1</td>
+                                            <td>120%</td>
+                                            <td>$37.200</td>
+                                        </tr>
+                                        <tr class="table-primary">
+                                            <td><i class="fas fa-thumbs-up fa-lg"></i></td>
+                                            <td>3.6</td>
+                                            <td>4.4</td>
+                                            <td>100%</td>
+                                            <td>$31.000</td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <td><i class="fas fa-thumbs-down fa-lg"></i></td>
+                                            <td>3</td>
+                                            <td>3.5</td>
+                                            <td>75%</td>
+                                            <td>$23.250</td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <td><i class="fas fa-flushed fa-lg"></i></td>
+                                            <td>2</td>
+                                            <td>2.9</td>
+                                            <td>50%</td>
+                                            <td>$15.500</td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <td><i class="far fa-dizzy fa-lg"></i></td>
+                                            <td>1</td>
+                                            <td>1.9</td>
+                                            <td>25%</td>
+                                            <td>$7.750</td>
+                                        </tr>
+                                        <tr class="table-warning">
+                                            <td><i class="fas fa-skull-crossbones fa-lg"></i></td>
+                                            <td>0</td>
+                                            <td>0.9</td>
+                                            <td>0%</td>
+                                            <td>$0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
